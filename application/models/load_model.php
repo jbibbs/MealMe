@@ -7,17 +7,16 @@ class Load_model extends CI_Model {
    * 
    * @obj - Loader class located in /libraries/Loader.php
    */
-  function add_starter_data($obj){
-    if(!empty($obj)){
-      foreach($obj as $table => $key){
-          foreach($key->values as $attribute){
-            $this->db->set($key, $attribute);
-            $this->db->insert($table);
-          }
+  function add_starter_data($arr){
+    if(!empty($arr) && is_array($arr)){
+      foreach($arr as $key => $value){
+        foreach($value as $index => $attribute){
+          $this->db->insert($key, $attribute);
         }
       }
+      }
     else {
-      log_message('error', 'add_starter_data function was passed an empty object in load_model');
+      log_message('error', 'add_starter_data function was passed an invalid object type in load_model.php');
     }
   }
   

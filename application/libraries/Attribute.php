@@ -2,10 +2,14 @@
 
 class Attribute {
   
+  private $name;
   private $values;
+  private $table;
   
-  public function __construct($values = array()){
+  public function __construct($name, $values, $table){
+    $this->__set('name', $name);
     $this->__set('values', $values);
+    $this->__set('table', $table);
   }
   
   public function __get($property){
