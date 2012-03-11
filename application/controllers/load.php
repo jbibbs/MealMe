@@ -3,7 +3,7 @@
  * Adds building blocks and starting information to DB
  * 
  */
-require_once('application/libraries/Loader.php');
+require_once('application/libraries/Attribute.php');
 class Load extends CI_Controller {
   
   public function __construct() {
@@ -14,7 +14,7 @@ class Load extends CI_Controller {
     $this->load->model('load_model');
     
     //Displays some developer information - what's going on behind the scenes - disable for production!
-    //$this->output->enable_profiler(TRUE);
+    $this->output->enable_profiler(TRUE);
   }
   
   public function index(){
@@ -23,15 +23,15 @@ class Load extends CI_Controller {
     $difficulties = array('Beginner', 'Intermediate', 'Advanced');
     $main_ingredients = array('Beef', 'Veggies', 'Lamb', 'Pasta', 'Poultry', 'Fruit', 'Bread', 'Tofu', 'Fish');
        
-    $starter = new Loader;
+    $course = new Attribute('course', $courses);
+    $cuisines = new Attribute('cuisine', $cuisines);
+    $difficulties = new Attribute('difficulty', $difficulties);
+    $main_ingredients = new Attribute('main_ingredient', $main_ingredients);
     
-    $starter->__set('courses', $courses);
-    $starter->__set('cuisines', $cuisines);
-    $starter->__set('difficulties', $difficulties);
-    $starter->__set('main_ingredients', $main_ingredients);
+    $items = array($course, $cuisines, $difficulties, $main_ingredients);
+
     
-    $this->load_model->add_starter_data($starter);
-    print_r($starter);
+   // $this->load_model->add_starter_data($starter);
   }
   
   
