@@ -2,11 +2,9 @@
 
 class Attribute {
   
-  private $name;
   private $values;
   
-  public function __construct($name = '', $values = ''){
-    $this->__set('name', $name);
+  public function __construct($values = array()){
     $this->__set('values', $values);
   }
   

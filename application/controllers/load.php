@@ -18,20 +18,18 @@ class Load extends CI_Controller {
   }
   
   public function index(){
-    $courses = array('Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Other');
-    $cuisines = array('American', 'Chinese', 'Japanese', 'French', 'British', 'Italian', 'Indian', 'Korean', 'Mediterranean', 'Thai', 'Other');
-    $difficulties = array('Beginner', 'Intermediate', 'Advanced');
-    $main_ingredients = array('Beef', 'Veggies', 'Lamb', 'Pasta', 'Poultry', 'Fruit', 'Bread', 'Tofu', 'Fish');
-       
-    $course = new Attribute('course', $courses);
-    $cuisines = new Attribute('cuisine', $cuisines);
-    $difficulties = new Attribute('difficulty', $difficulties);
-    $main_ingredients = new Attribute('main_ingredient', $main_ingredients);
-    
-    $items = array($course, $cuisines, $difficulties, $main_ingredients);
-
-    
-   // $this->load_model->add_starter_data($starter);
+    $courses = array('course' => array('Breakfast', 'Lunch', 'Dinner', 'Dessert', 'Other'));
+    $cuisines = array('cuisine' => array('American', 'Chinese', 'Japanese', 'French', 'British', 'Italian', 'Indian', 'Korean', 'Mediterranean', 'Thai', 'Other'));
+    $difficulties = array('difficulty' => array('Beginner', 'Intermediate', 'Advanced'));
+    $main_ingredients = array('main_ingredient' => array('Beef', 'Veggies', 'Lamb', 'Pasta', 'Poultry', 'Fruit', 'Bread', 'Tofu', 'Fish'));
+     
+    $items = array(  
+      'courses' => new Attribute($courses),
+      'cuisines' => new Attribute($cuisines),
+      'difficulties' => new Attribute($difficulties),
+      'main_ingredients' => new Attribute($main_ingredients),
+    );
+    $this->load_model->add_starter_data($items);
   }
   
   
